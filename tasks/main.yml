@@ -1,0 +1,28 @@
+---
+- name: imapfilter | install imapfilter packages
+  apt: name={{ item }} state=latest 
+  with_items: "{{ imapfilter_packages }}"
+
+- name: imapfilter | ensure imapfilter group is present
+  group: name={{ imapfilter_group }} state=present
+
+- name: getmail | ensure imapfilter user is present
+  user: name={{ imapfilter_user }} group={{ imapfilter_group }} state=present
+
+- name: imapfilter | create imapfilter home
+  file: path={{ imapfilter_home }} owner={{ imapfilter_user }} group={{ imapfilter_group }} mode=0700 state=directory
+
+- name: imapfilter | create imapfilter log 
+  file: path={{ imapfilter_log }} owner={{ imapfilter_user }} group={{ imapfilter_group }} mode=0700 state=directory
+
+- name: getmail | create account configurations
+  template: src=gmail_clean.lua.j2 dest={{ imapfilter_home }}/gmail_clean.lua owner={{ imapfilter_user }} group={{ imapfilter_group }} mode=0700
+
+- name: imapfilter | create systemd unit
+  template: src=imapfilter.service.j2 dest=/etc/systemd/system/imapfilter.service owner=root group=root mode=0644
+
+- name: imapfilter | create systemd timer
+  template: src=imapfilter.timer.j2 dest=/etc/systemd/system/imapfilter.timer owner=root group=root mode=0644
+
+- name: imapfilter | start and enable systemd unit timer
+  systemd: daemon_reload=yes name=imapfilter.timer state=started enabled=yes

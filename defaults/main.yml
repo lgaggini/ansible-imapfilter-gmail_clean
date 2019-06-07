@@ -1,0 +1,22 @@
+---
+# packages to be installed
+imapfilter_packages:
+  - imapfilter
+
+# getmail user
+imapfilter_user: imapfilter
+imapfilter_group: imapfilter
+
+# where to store getmail configuration files
+imapfilter_home: /etc/imapfilter
+
+# where to store getmail log files
+imapfilter_log: /var/log/imapfilter
+
+# getmail oneshot minutes interval
+imapfilter_minutes_interval: 5
+
+# getmail_accounts to be fetched by getmail
+imapfilter_account:
+    username: test@gmail.com
+    password: test

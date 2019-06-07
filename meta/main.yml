@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  role_name: ansible-imapfilter-gmail_clean
+  author: lgaggini
+  description: ansible-imapfilter-gmail_clean is an Ansible role to install and configure imapfilter on a debian based OS to clean gmail trash and spam folders
+  license: GPLv3
+  min_ansible_version: 2.4
+  platforms:
+   - name: Debian
+     versions:
+     - all
+   - name: Ubuntu
+     versions:
+     - all
+  galaxy_tags:
+    - system
+    - mail

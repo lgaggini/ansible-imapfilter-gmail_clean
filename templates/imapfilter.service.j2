@@ -1,0 +1,7 @@
+[Unit]
+Description=ImapFilter gmail clean job
+
+[Service]
+Type=oneshot
+User={{ imapfilter_user }}
+ExecStart=/usr/bin/imapfilter -c {{ imapfilter_home }}/gmail_clean.lua -l {{ imapfilter_log }}/gmail_clean.log

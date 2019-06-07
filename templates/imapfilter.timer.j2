@@ -1,0 +1,10 @@
+[Unit]
+Description=Gmail clean every {{ imapfilter_minutes_interval }} minutes
+
+[Timer]
+OnBootSec={{ imapfilter_minutes_interval }}min
+OnUnitActiveSec={{ imapfilter_minutes_interval }}min
+Persistent=False
+
+[Install]
+WantedBy=timers.target

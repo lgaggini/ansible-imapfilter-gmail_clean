@@ -11,6 +11,8 @@ account = IMAP {
 trash = account['[Gmail]/Cestino']:is_undeleted()
 account['[Gmail]/Cestino']:delete_messages(trash)
 
-spam = account['[Gmail]/Spam']:is_unanswered()
-account['[Gmail]/Spam']:delete_messages(spam)
+sent = account['[Gmail]/Posta inviata']:is_undeleted()
+account['[Gmail]/Posta inviata']:delete_messages(sent)
 
+all = account['[Gmail]/Tutti i messaggi']:is_undeleted()
+account['[Gmail]/Tutti i messaggi']:delete_messages(all)
